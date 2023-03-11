@@ -1,0 +1,18 @@
+.resultContainer {
+  display: grid;
+  gap: 8px;
+  margin: 0 32px;
+  
+}
+
+@media (min-width: 320px) {
+  .resultContainer { 
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1025px) {
+  .resultContainer { 
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
