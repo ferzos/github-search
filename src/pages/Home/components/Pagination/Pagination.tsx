@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+
 import { MAX_PAGE_PAGINATION } from "./constants";
+
+import { clamp } from "../../utils";
 
 import style from "./Pagination.module.css";
 
@@ -8,8 +11,6 @@ interface Props {
   currentPage: number
   totalPage: number
 }
-
-const clamp = (totalPage: number, maxPagePagination: number) => totalPage > maxPagePagination ? maxPagePagination : totalPage
 
 const getURL = (pageNumber: number) => {
   const newPageUrl = new URL(window.location.toString())
@@ -50,24 +51,16 @@ const Pagination = (props: Props) => {
     window.scrollTo(0, 0)
   }
 
-  const goToFirst = () => replace(getURL(1));
-
-  const goToLast = () => replace(getURL(totalPage));
-
-  const goToPrev = () => replace(getURL(currentPage - 1));;
-
-  const goToNext = () => replace(getURL(currentPage + 1));;
-
   const hasNext = currentPage < totalPage
 
   return (
     <div className={style.container}>
       {currentPage > 1 && (
         <>
-          <div className={style.pageItem} onClick={goToFirst}>
+          <div className={style.pageItem} onClick={handleNavigate(1)}>
             {'<<'}
           </div>
-          <div className={style.pageItem} onClick={goToPrev}>
+          <div className={style.pageItem} onClick={handleNavigate(currentPage - 1)}>
             {'<'}
           </div>
         </>
@@ -87,10 +80,10 @@ const Pagination = (props: Props) => {
           <div className={style.pageItem} onClick={handleNavigate(totalPage)}>
             {totalPage}
           </div>
-          <div className={style.pageItem} onClick={goToNext}>
+          <div className={style.pageItem} onClick={handleNavigate(currentPage + 1)}>
             {'>'}
           </div>
-          <div className={style.pageItem} onClick={goToLast}>
+          <div className={style.pageItem} onClick={handleNavigate(totalPage)}>
             {'>>'}
           </div>
         </>

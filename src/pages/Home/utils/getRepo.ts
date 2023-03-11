@@ -4,6 +4,8 @@ const octokit = new Octokit({
   auth: process.env.REACT_APP_GITHUB_ACCESS_TOKEN
 })
 
+export const PER_PAGE = 12
+
 export const getRepoData = async (repoName: string, page: number) => {
 
   const response = await octokit.request('GET /search/repositories', {
@@ -13,7 +15,7 @@ export const getRepoData = async (repoName: string, page: number) => {
       // 'X-GitHub-Api-Version': '2022-11-28',
     },
     q: repoName,
-    per_page: 12,
+    per_page: PER_PAGE,
     page,
   })
 

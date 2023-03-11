@@ -1,16 +1,18 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import { getRepoData } from '../utils';
+import { clamp, getRepoData, PER_PAGE } from '../utils';
 import { Repository } from '../types';
 
 interface Params {
   repoName: string;
-  setTotalCount: (totalCount: number) => void;
+  setTotalPage: (totalPage: number) => void;
   currentPage: number
 }
 
+const MAX_SEARCH = 1000
+
 export const useGetRepoData = (param: Params) => {
-  const { repoName, setTotalCount, currentPage} = param
+  const { repoName, setTotalPage, currentPage} = param
 
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [prevCurrPage, setPrevCurrPage] = useState<number | undefined>(currentPage);
@@ -23,14 +25,14 @@ export const useGetRepoData = (param: Params) => {
       setIsLoading(true);
       
       const response = await getRepoData(currRepoName, currPage)
-      const { repositories: repositoriesData, totalCount: totalCountData } = response || {}
+      const { repositories: repositoriesData, totalCount } = response || {}
   
       if (repositoriesData) {
         setRepositories(repositoriesData)
       }
   
-      if (totalCountData) {
-        setTotalCount(totalCountData)
+      if (totalCount) {
+        setTotalPage(Math.floor((clamp(totalCount, MAX_SEARCH)) / PER_PAGE))
       }
   
       setIsLoading(false);
@@ -40,7 +42,7 @@ export const useGetRepoData = (param: Params) => {
       setIsLoading(false);
       setIsError(true)
     }
-  }, [setTotalCount])
+  }, [setTotalPage])
 
   useEffect(() => {
     // Repo name changes

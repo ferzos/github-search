@@ -11,11 +11,11 @@ import style from "./HomeLayout.module.css";
 const HomeLayout = () => {
   const { replace } = useHistory()
 
-  const [totalCount, setTotalCount] = useState<number>(0);
-  const { currentPage, totalPage, showPagination } = usePagination({ totalPage: totalCount, });
+  const [totalPage, setTotalPage] = useState(0);
+  const { currentPage, showPagination } = usePagination({ totalPage });
 
   const [repoName, setRepoName] = useState('');
-  const { isLoading, isError, repositories } = useGetRepoData({ repoName, currentPage, setTotalCount })
+  const { isLoading, isError, repositories } = useGetRepoData({ repoName, currentPage, setTotalPage })
 
   const handleSearchSubmit = (repoName: string) => {
     replace({
