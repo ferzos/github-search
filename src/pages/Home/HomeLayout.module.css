@@ -4,6 +4,17 @@
   padding: 16px 32px;
 }
 
+.loadingContainer {
+  margin: 0 auto;
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
 @media (min-width: 320px) {
   .resultContainer { 
     grid-template-columns: 1fr;

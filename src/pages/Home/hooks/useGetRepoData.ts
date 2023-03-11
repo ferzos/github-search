@@ -15,19 +15,32 @@ export const useGetRepoData = (param: Params) => {
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [prevCurrPage, setPrevCurrPage] = useState<number | undefined>(currentPage);
   const [prevRepoName, setPrevRepoName] = useState<string | undefined>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const fetchRepoName = useCallback(async (currRepoName: string, currPage: number) => {
-    const response = await getRepoData(currRepoName, currPage)
-    const { repositories: repositoriesData, totalCount: totalCountData } = response || {}
-
-    if (repositoriesData) {
-      setRepositories(repositoriesData)
+    try {
+      setIsLoading(true);
+      
+      const response = await getRepoData(currRepoName, currPage)
+      const { repositories: repositoriesData, totalCount: totalCountData } = response || {}
+  
+      if (repositoriesData) {
+        setRepositories(repositoriesData)
+      }
+  
+      if (totalCountData) {
+        setTotalCount(totalCountData)
+      }
+  
+      setIsLoading(false);
+      setIsError(false)
+    } catch (error) {
+      console.error(error)
+      setIsLoading(false);
+      setIsError(true)
     }
-
-    if (totalCountData) {
-      setTotalCount(totalCountData)
-    }
-  }, [])
+  }, [setTotalCount])
 
   useEffect(() => {
     // Repo name changes
@@ -47,6 +60,8 @@ export const useGetRepoData = (param: Params) => {
   }, [currentPage, fetchRepoName, prevCurrPage, prevRepoName, repoName]);
 
   return {
+    isLoading,
+    isError,
     repositories,
   }
 }
