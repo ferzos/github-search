@@ -65,11 +65,12 @@ const HomeLayout = () => {
 
 
   return (
-    <>
+    <div className={style.container}>
+      <h2>Search your Github Repo!</h2>
       <Search onSearchSubmit={handleSearchSubmit} />
 
       <Content />
-    </>
+    </div>
   );
 }
 
