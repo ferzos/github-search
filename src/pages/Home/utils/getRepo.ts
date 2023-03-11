@@ -1,4 +1,4 @@
-import { Octokit } from "@octokit/core"
+import { Octokit } from "octokit"
 
 const octokit = new Octokit({
   auth: process.env.REACT_APP_GITHUB_ACCESS_TOKEN
@@ -8,6 +8,7 @@ export const getRepoData = async (repoName: string, page: number) => {
 
   const response = await octokit.request('GET /search/repositories', {
     headers: {
+      accept: 'application/vnd.github+json ',
       'X-GitHub-Api-Version': '2022-11-28',
     },
     q: repoName,
