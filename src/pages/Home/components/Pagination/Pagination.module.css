@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  margin: 0 auto;
+  padding: 0 32px 16px 32px;
+}
+
+.pageItem {
+  padding: 16px;
+  cursor: pointer;
+  border: 1px solid #e5e5e5
+}
+
+.pageItem:hover {
+  opacity: 0.5;
+}
+
+.pageItemActive {
+  padding: 16px;
+  cursor: pointer;
+  border: 1px solid #e5e5e5;
+  background-color: #000000;
+  color: #ffffff;
+}

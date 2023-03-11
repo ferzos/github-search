@@ -1,5 +1,6 @@
-import style from "./App.module.css";
 import { HomeLayout } from "./pages";
+
+import style from "./App.module.css";
 
 const App = () => {
   return (

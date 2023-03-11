@@ -15,7 +15,7 @@ const Search = (props: Props) => {
     if (searchInput) {
       onSearchSubmit(searchInput)
     }
-    }, 200), [])
+    }, 500), [])
 
   useEffect(() => {
     if (searchInput !== '') {
