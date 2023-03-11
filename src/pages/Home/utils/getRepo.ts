@@ -9,7 +9,8 @@ export const getRepoData = async (repoName: string, page: number) => {
   const response = await octokit.request('GET /search/repositories', {
     headers: {
       accept: 'application/vnd.github+json ',
-      'X-GitHub-Api-Version': '2022-11-28',
+      // https://github.com/community/community/discussions/40619
+      // 'X-GitHub-Api-Version': '2022-11-28',
     },
     q: repoName,
     per_page: 12,
