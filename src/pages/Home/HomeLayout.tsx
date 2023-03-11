@@ -31,7 +31,6 @@ const HomeLayout = () => {
             createdAt={createdAt}
             desc={description || ''}
             language={language || ''}
-            login={owner.login || ''}
             name={owner.name || ''}
             repoName={name}
             repoUrl={repoUrl}

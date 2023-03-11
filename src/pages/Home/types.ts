@@ -5,8 +5,7 @@ export interface Repository {
   language: string | null;
   owner: {
     avatar?: string;
-    name?: string | null;
-    login?: string;
+    name?: string;
   };
   repoUrl: string
 }

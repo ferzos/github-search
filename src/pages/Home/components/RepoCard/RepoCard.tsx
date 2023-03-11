@@ -3,7 +3,6 @@ import style from "./RepoCard.module.css";
 interface Props {
   avatarUrl: string;
   name: string;
-  login: string;
   repoName: string;
   repoUrl: string;
   desc: string;
@@ -15,7 +14,6 @@ const RepoCard = (props: Props) => {
   const {
     avatarUrl,
     name,
-    login,
     repoName,
     repoUrl,
     desc,
@@ -32,9 +30,8 @@ const RepoCard = (props: Props) => {
       <div className={style.headerContainer}>
         <img className={style.avatar} src={avatarUrl} alt={`avatar-${name}`} />
         <div>
-          <h5>{name}</h5>
-          <h6 className={style.login}>{login}</h6>
-          <h6>
+          <h5 className={style.username}>{name}</h5>
+          <h6 className={style.createdAt}>
             <>
               Created at: {(new Date(createdAt)).toDateString()}
             </>
@@ -45,12 +42,12 @@ const RepoCard = (props: Props) => {
       <div className={style.bodyContainer}>
         <h3>{repoName}</h3>
         <br />
-        <h4>{desc}</h4>
+        <h4 className={style.desc}>{desc}</h4>
       </div>
 
-      <div className={style.footerContainer}>
+      {language && <div className={style.footerContainer}>
         <span className={style.language}>{language}</span>
-      </div>
+      </div>}
     </div>
   );
 };
