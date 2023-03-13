@@ -27,6 +27,7 @@ export const getRepoData = async (repoName: string, page: number) => {
   const { items, total_count } = data
 
   const repositories = items.map(item => ({
+    id: item.id,
     createdAt: item.created_at,
     description: item.description,
     name: item.full_name,
@@ -35,7 +36,7 @@ export const getRepoData = async (repoName: string, page: number) => {
     owner: {
       avatar: item.owner?.avatar_url,
       name: item.owner?.login,
-    }
+    },
   }))
 
   return {

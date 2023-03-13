@@ -45,8 +45,9 @@ const HomeLayout = () => {
     return (
       <>
         <div className={style.resultContainer}>
-          {repositories.map(({ createdAt, description, language, name, owner, repoUrl }) => (
+          {repositories.map(({ id, createdAt, description, language, name, owner, repoUrl }) => (
             <RepoCard
+              key={id}
               avatarUrl={owner.avatar || ''}
               createdAt={createdAt}
               desc={description || ''}

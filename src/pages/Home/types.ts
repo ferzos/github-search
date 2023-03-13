@@ -1,4 +1,5 @@
 export interface Repository {
+  id: number;
   createdAt: string;
   description: string | null;
   name: string;

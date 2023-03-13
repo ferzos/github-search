@@ -67,7 +67,7 @@ const Pagination = (props: Props) => {
       )}
 
       {pages.map((pageNumber) => (
-        <div className={currentPage === pageNumber ? style.pageItemActive : style.pageItem} onClick={handleNavigate(pageNumber)}>
+        <div key={pageNumber} className={currentPage === pageNumber ? style.pageItemActive : style.pageItem} onClick={handleNavigate(pageNumber)}>
           {pageNumber}
         </div>
       ))}
