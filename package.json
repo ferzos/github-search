@@ -10,7 +10,6 @@
     "@types/node": "^16.18.14",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "husky": "^8.0.3",
     "lint-staged": "^13.2.0",
     "octokit": "^2.0.14",
     "prettier": "^2.8.4",
@@ -30,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -51,7 +51,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.3.3"
+    "@types/react-router-dom": "^5.3.3",
+    "husky": "^8.0.0"
   },
   "husky": {
     "hooks": {
