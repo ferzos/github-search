@@ -8,5 +8,5 @@ export interface Repository {
     avatar?: string;
     name?: string;
   };
-  repoUrl: string
+  repoUrl: string;
 }

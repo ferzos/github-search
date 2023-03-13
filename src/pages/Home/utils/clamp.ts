@@ -1,1 +1,2 @@
-export const clamp = (totalPage: number, maxPagePagination: number) => totalPage > maxPagePagination ? maxPagePagination : totalPage
+export const clamp = (totalPage: number, maxPagePagination: number) =>
+  totalPage > maxPagePagination ? maxPagePagination : totalPage;

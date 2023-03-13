@@ -11,19 +11,12 @@ interface Props {
 }
 
 const RepoCard = (props: Props) => {
-  const {
-    avatarUrl,
-    name,
-    repoName,
-    repoUrl,
-    desc,
-    language,
-    createdAt,
-  } = props
+  const { avatarUrl, name, repoName, repoUrl, desc, language, createdAt } =
+    props;
 
   const goToRepo = () => {
-    window.open(repoUrl, '_blank')
-  }
+    window.open(repoUrl, "_blank");
+  };
 
   return (
     <div className={style.container} onClick={goToRepo}>
@@ -32,9 +25,7 @@ const RepoCard = (props: Props) => {
         <div>
           <h5 className={style.username}>{name}</h5>
           <h6 className={style.createdAt}>
-            <>
-              Created at: {(new Date(createdAt)).toDateString()}
-            </>
+            <>Created at: {new Date(createdAt).toDateString()}</>
           </h6>
         </div>
       </div>
@@ -45,9 +36,11 @@ const RepoCard = (props: Props) => {
         <h4 className={style.desc}>{desc}</h4>
       </div>
 
-      {language && <div className={style.footerContainer}>
-        <span className={style.language}>{language}</span>
-      </div>}
+      {language && (
+        <div className={style.footerContainer}>
+          <span className={style.language}>{language}</span>
+        </div>
+      )}
     </div>
   );
 };

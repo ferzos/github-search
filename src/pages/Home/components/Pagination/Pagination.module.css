@@ -7,7 +7,7 @@
 .pageItem {
   padding: 16px;
   cursor: pointer;
-  border: 1px solid #e5e5e5
+  border: 1px solid #e5e5e5;
 }
 
 .pageItem:hover {
