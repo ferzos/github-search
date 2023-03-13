@@ -8,6 +8,10 @@ export const PER_PAGE = 12
 
 export const getRepoData = async (repoName: string, page: number) => {
 
+  if (!process.env.REACT_APP_GITHUB_ACCESS_TOKEN) {
+    throw new Error('Please set your Github Access Token in the .env')
+  }
+
   const response = await octokit.request('GET /search/repositories', {
     headers: {
       accept: 'application/vnd.github+json ',
