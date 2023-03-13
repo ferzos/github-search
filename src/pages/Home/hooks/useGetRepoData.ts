@@ -32,7 +32,7 @@ export const useGetRepoData = (param: Params) => {
       }
   
       if (totalCount) {
-        setTotalPage(Math.floor((clamp(totalCount, MAX_SEARCH)) / PER_PAGE))
+        setTotalPage(Math.ceil((clamp(totalCount, MAX_SEARCH)) / PER_PAGE))
       }
   
       setIsLoading(false);
