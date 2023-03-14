@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+import LoadingGif from "./assets/loading-gif.gif";
+
 import { Pagination, RepoCard, Search } from "./components";
 import { usePagination } from "./components/Pagination/hooks/usePagination";
 
@@ -32,13 +34,12 @@ const HomeLayout = () => {
     if (isLoading) {
       return (
         <div className={style.loadingContainer}>
-          <iframe
-            title="loading"
-            src="https://giphy.com/embed/y1ZBcOGOOtlpC"
-            width="480"
-            height="480"
-            frameBorder="0"
-            allowFullScreen
+          <img
+            className={style.loadingImage}
+            src={LoadingGif}
+            alt="loading"
+            width={64}
+            height={64}
           />
         </div>
       );
@@ -48,13 +49,8 @@ const HomeLayout = () => {
       return (
         <div className={style.errorContainer}>
           <h2>Error occurred!</h2>
-          <iframe
-            title="error"
-            src="https://giphy.com/embed/BEob5qwFkSJ7G"
-            width="480"
-            height="355"
-            frameBorder="0"
-          />
+          <br />
+          <h3>Please try again later</h3>
         </div>
       );
     }
@@ -95,7 +91,7 @@ const HomeLayout = () => {
 
   return (
     <div className={style.container}>
-      <h2>Search your Github Repo!</h2>
+      <h2>Search your GitHub Repo!</h2>
       <Search onSearchSubmit={handleSearchSubmit} />
 
       <Content />

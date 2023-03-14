@@ -12,7 +12,14 @@
 }
 
 .loadingContainer {
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
+  height: 100vh;
+}
+
+.loadingImage {
+  align-self: center;
 }
 
 .errorContainer {
@@ -20,6 +27,9 @@
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+  color: red;
+  height: 100vh;
+  justify-content: center;
 }
 
 @media (min-width: 320px) {
