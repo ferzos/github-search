@@ -32,6 +32,17 @@
   justify-content: center;
 }
 
+.emptyContainer {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.emptyIllus {
+  width: 100%;
+  align-self: center;
+}
+
 @media (min-width: 320px) {
   .resultContainer {
     grid-template-columns: 1fr;

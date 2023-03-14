@@ -21,6 +21,7 @@ export const useGetRepoData = (param: Params) => {
   const [prevRepoName, setPrevRepoName] = useState<string | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const fetchRepoName = useCallback(
     async (currRepoName: string, currPage: number) => {
@@ -30,12 +31,18 @@ export const useGetRepoData = (param: Params) => {
         const response = await getRepoData(currRepoName, currPage);
         const { repositories: repositoriesData, totalCount } = response || {};
 
-        if (repositoriesData) {
-          setRepositories(repositoriesData);
-        }
+        if (repositoriesData.length) {
+          setIsEmpty(false);
 
-        if (totalCount) {
-          setTotalPage(Math.ceil(clamp(totalCount, MAX_SEARCH) / PER_PAGE));
+          if (repositoriesData) {
+            setRepositories(repositoriesData);
+          }
+
+          if (totalCount) {
+            setTotalPage(Math.ceil(clamp(totalCount, MAX_SEARCH) / PER_PAGE));
+          }
+        } else {
+          setIsEmpty(true);
         }
 
         setIsLoading(false);
@@ -69,6 +76,7 @@ export const useGetRepoData = (param: Params) => {
   return {
     isLoading,
     isError,
+    isEmpty,
     repositories,
   };
 };

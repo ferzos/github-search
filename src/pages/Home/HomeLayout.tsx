@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import LoadingGif from "./assets/loading-gif.gif";
+import EmptyIllus from "./assets/whyempty.jpeg";
 
 import { Pagination, RepoCard, Search } from "./components";
 import { usePagination } from "./components/Pagination/hooks/usePagination";
@@ -17,7 +18,7 @@ const HomeLayout = () => {
   const { currentPage, showPagination } = usePagination({ totalPage });
 
   const [repoName, setRepoName] = useState("");
-  const { isLoading, isError, repositories } = useGetRepoData({
+  const { isLoading, isError, isEmpty, repositories } = useGetRepoData({
     repoName,
     currentPage,
     setTotalPage,
@@ -51,6 +52,18 @@ const HomeLayout = () => {
           <h2>Error occurred!</h2>
           <br />
           <h3>Please try again later</h3>
+        </div>
+      );
+    }
+
+    if (isEmpty) {
+      return (
+        <div className={style.emptyContainer}>
+          <img
+            className={style.emptyIllus}
+            src={EmptyIllus}
+            alt="empty-illus"
+          />
         </div>
       );
     }
